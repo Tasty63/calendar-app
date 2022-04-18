@@ -1,0 +1,51 @@
+@import '../config/variables.scss';
+
+.calendar {
+  border: 2px solid $calendar-color;
+
+  &__header {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+    background-color: $calendar-color;
+    color: white;
+    font-size: 40px;
+  }
+
+  &__weekdays {
+    display: flex;
+  }
+
+  &__weekday {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 calc(100% / 7);
+    padding: 15px 0;
+  }
+
+  &__days {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__day {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 calc(100% / 7);
+    padding: 40px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+
+    &:hover {
+      border: 2px solid $calendar-color;
+      cursor: pointer;
+    }
+  }
+}
+
+.button-month {
+  &:hover {
+    cursor: pointer;
+  }
+}
