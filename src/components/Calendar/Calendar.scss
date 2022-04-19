@@ -1,4 +1,4 @@
-@import '../config/variables.scss';
+@import '../../config/variables.scss';
 
 .calendar {
   border: 2px solid $calendar-color;
@@ -39,7 +39,6 @@
     justify-content: center;
     flex: 0 0 calc(100% / 7);
     padding: 40px 0;
-    border-radius: 5px;
     box-sizing: border-box;
     border: 2px solid transparent;
 
@@ -47,16 +46,14 @@
       border: 2px solid $calendar-color;
       cursor: pointer;
     }
-  }
 
-  &__empty {
-    display: flex;
-    justify-content: center;
-    flex: 0 0 calc(100% / 7);
-    padding: 40px 0;
-    border-radius: 5px;
-    box-sizing: border-box;
-    border: 2px solid transparent;
+    &_other-month {
+      background-color: $calendar-other-day-color;
+
+      &:hover {
+        border: 2px solid black;
+      }
+    }
   }
 }
 

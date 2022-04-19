@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { months, weekDays } from '../config/constants';
+import { daysInCalendar, months, weekDays } from '../../config/constants';
 import './Calendar.scss';
 
 function Calendar() {
   const [currentDate, setDate] = useState(new Date());
-  const [daysMatrix, setDays] = useState<Number[]>([]);
+  const [daysArray, setDays] = useState<Date[]>([]);
 
   const setNextMonth = () => {
     setDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1));
@@ -14,19 +14,28 @@ function Calendar() {
     setDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1));
   };
 
-  const getDaysInMonth = () => {
-    const day = currentDate.getDate();
+  const getDaysScheme = () => {
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
+    const MonthScheme = [];
 
     const firstWeekDayNumber = new Date(year, month, 1).getDay();
-
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    return new Array(firstWeekDayNumber + daysInMonth).fill(null, 0, firstWeekDayNumber).fill(0, firstWeekDayNumber);
+
+    for (let index = 0; index < daysInCalendar; index++) {
+      if (index < firstWeekDayNumber) {
+        MonthScheme.push(new Date(year, month, 0 - firstWeekDayNumber + index + 1));
+      } else if (index < daysInMonth + firstWeekDayNumber) {
+        MonthScheme.push(new Date(year, month, index - firstWeekDayNumber + 1));
+      } else if (index < daysInCalendar) {
+        MonthScheme.push(new Date(year, month + 1, index - firstWeekDayNumber - daysInMonth + 1));
+      }
+    }
+    return MonthScheme;
   };
 
   useEffect(() => {
-    setDays(getDaysInMonth());
+    setDays(getDaysScheme());
   }, [currentDate]);
 
   return (
@@ -40,17 +49,19 @@ function Calendar() {
       </div>
       <div className="calendar__body">
         <div className="calendar__weekdays">
-          {weekDays.map((weekDay) => (
-            <div className="calendar__weekday">{weekDay}</div>
+          {weekDays.map((weekDay, index) => (
+            <div key={index} className="calendar__weekday">
+              {weekDay}
+            </div>
           ))}
         </div>
         <div className="calendar__days">
-          {daysMatrix.map((day, index) => {
-            return day === null ? (
-              <div key={index} className="calendar__empty"></div>
-            ) : (
-              <div key={index} className="calendar__day">
-                {index - daysMatrix.filter((day) => day === null).length + 1}
+          {daysArray.map((day, index) => {
+            const dayClassName =
+              day.getMonth() === currentDate.getMonth() ? 'calendar__day' : 'calendar__day calendar__day_other-month';
+            return (
+              <div key={day.toDateString()} className={dayClassName}>
+                {day.getDate()}
               </div>
             );
           })}
