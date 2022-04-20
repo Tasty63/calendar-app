@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { daysInCalendar, months, weekDays } from '../../config/constants';
+import CalendarDay from '../CalendarDay/CalendarDay';
 import './Calendar.scss';
 
 function Calendar() {
@@ -57,13 +58,8 @@ function Calendar() {
         </div>
         <div className="calendar__days">
           {daysArray.map((day, index) => {
-            const dayClassName =
-              day.getMonth() === currentDate.getMonth() ? 'calendar__day' : 'calendar__day calendar__day_other-month';
-            return (
-              <div key={day.toDateString()} className={dayClassName}>
-                {day.getDate()}
-              </div>
-            );
+            const isFromCurrentMonth = day.getMonth() === currentDate.getMonth();
+            return <CalendarDay date={day} isFromCurrentMonth={isFromCurrentMonth} />;
           })}
         </div>
       </div>
