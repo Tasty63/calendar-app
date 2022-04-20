@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CalendarDayProps } from '../../types/calendar-types';
+import Modal from '../Modal/Modal';
 import './CalendarDay.scss';
 
 function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
+  const [isModalActive, setModalActive] = useState(false);
+
   const isToday = (date: Date) => {
     return (
       date.getDate() === new Date().getDate() &&
@@ -18,9 +21,14 @@ function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
     : 'calendar__day calendar__day_other-month';
 
   return (
-    <div key={date.toDateString()} className={dayClassName}>
-      {date.getDate()}
-    </div>
+    <>
+      <div key={date.toDateString()} className={dayClassName} onClick={() => setModalActive(true)}>
+        {date.getDate()}
+      </div>
+      <Modal isActive={isModalActive} setActive={setModalActive}>
+        <div className="events">events</div>
+      </Modal>
+    </>
   );
 }
 

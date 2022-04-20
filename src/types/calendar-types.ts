@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface CalendarDayProps {
   date: Date;
   isFromCurrentMonth: boolean;
@@ -15,3 +17,9 @@ export interface DayEvent {
   participants: string[];
   description: string;
 }
+
+export type ModalProps = {
+  isActive: boolean;
+  setActive: (state: boolean) => void;
+  children: ReactNode;
+};
