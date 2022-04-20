@@ -57,7 +57,7 @@ function Calendar() {
           ))}
         </div>
         <div className="calendar__days">
-          {daysArray.map((day, index) => {
+          {daysArray.map((day) => {
             const isFromCurrentMonth = day.getMonth() === currentDate.getMonth();
             return <CalendarDay date={day} isFromCurrentMonth={isFromCurrentMonth} />;
           })}

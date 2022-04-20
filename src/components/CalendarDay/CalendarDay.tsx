@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalendarDayProps } from '../../types/calendar.types';
+import { CalendarDayProps } from '../../types/calendar-types';
 import './CalendarDay.scss';
 
 function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
