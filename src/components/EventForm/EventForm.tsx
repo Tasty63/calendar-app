@@ -47,7 +47,7 @@ function EventForm({ date, setModalActive }: EventFormProps) {
           <label htmlFor="" className="event-form__label">
             Event Time
           </label>
-          <TimePicker disableClock value={startTime} onChange={setStartTime} />
+          <TimePicker maxTime={endTime} disableClock value={startTime} onChange={setStartTime} />
           -
           <TimePicker disableClock value={endTime} onChange={setEndTime} />
         </div>
