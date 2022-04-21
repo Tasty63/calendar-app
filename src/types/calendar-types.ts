@@ -9,7 +9,7 @@ export interface DayEventProps {
   id: number;
   day: string;
   name: string;
-  time: number;
+  time: string;
   participants: string[];
   description: string;
 }

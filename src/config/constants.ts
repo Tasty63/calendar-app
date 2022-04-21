@@ -14,3 +14,5 @@ export const months = [
 ];
 export const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 export const daysInCalendar = 42;
+
+export const noEventsText = 'There are no events';

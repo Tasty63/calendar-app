@@ -8,7 +8,15 @@ const initialState: DayEventProps[] = [
     name: 'Сходить в магазин',
     description: 'Купить: яйца, молоко, хлеб',
     participants: ['Пётр'],
-    time: new Date().getHours(),
+    time: '17:00 - 17:30',
+  },
+  {
+    id: 2,
+    day: 'Thu Apr 21 2022',
+    name: 'Вынести мусор',
+    description: '',
+    participants: ['Пётр'],
+    time: '17:30 - 17:35',
   },
 ];
 
