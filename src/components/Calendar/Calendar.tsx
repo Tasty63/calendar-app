@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { daysInCalendar, months, weekDays } from '../../config/constants';
 import CalendarDay from '../CalendarDay/CalendarDay';
 import './Calendar.scss';
@@ -15,7 +15,7 @@ function Calendar() {
     setDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1));
   };
 
-  const getDaysScheme = () => {
+  const getDaysScheme = useCallback(() => {
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
     const MonthScheme = [];
@@ -33,11 +33,11 @@ function Calendar() {
       }
     }
     return MonthScheme;
-  };
+  }, [currentDate]);
 
   useEffect(() => {
     setDays(getDaysScheme());
-  }, [currentDate]);
+  }, [getDaysScheme]);
 
   return (
     <div className="calendar">
@@ -59,7 +59,7 @@ function Calendar() {
         <div className="calendar__days">
           {daysArray.map((day) => {
             const isFromCurrentMonth = day.getMonth() === currentDate.getMonth();
-            return <CalendarDay date={day} isFromCurrentMonth={isFromCurrentMonth} />;
+            return <CalendarDay key={day.toDateString()} date={day} isFromCurrentMonth={isFromCurrentMonth} />;
           })}
         </div>
       </div>
