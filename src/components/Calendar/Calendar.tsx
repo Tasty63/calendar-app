@@ -18,21 +18,21 @@ function Calendar() {
   const getDaysScheme = useCallback(() => {
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
-    const MonthScheme = [];
+    const monthScheme = [];
 
     const firstWeekDayNumber = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     for (let index = 0; index < daysInCalendar; index++) {
       if (index < firstWeekDayNumber) {
-        MonthScheme.push(new Date(year, month, 0 - firstWeekDayNumber + index + 1));
+        monthScheme.push(new Date(year, month, 0 - firstWeekDayNumber + index + 1));
       } else if (index < daysInMonth + firstWeekDayNumber) {
-        MonthScheme.push(new Date(year, month, index - firstWeekDayNumber + 1));
+        monthScheme.push(new Date(year, month, index - firstWeekDayNumber + 1));
       } else if (index < daysInCalendar) {
-        MonthScheme.push(new Date(year, month + 1, index - firstWeekDayNumber - daysInMonth + 1));
+        monthScheme.push(new Date(year, month + 1, index - firstWeekDayNumber - daysInMonth + 1));
       }
     }
-    return MonthScheme;
+    return monthScheme;
   }, [currentDate]);
 
   useEffect(() => {
@@ -43,9 +43,9 @@ function Calendar() {
     <div className="calendar">
       <div className="calendar__header">
         <div className="button-month" onClick={setPrevMonth}>{`<`}</div>
-        <div className="calendar__current-month">{`${
-          months[currentDate.getMonth()]
-        } ${currentDate.getFullYear()}`}</div>
+        <div className="calendar__current-month">
+          {`${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
+        </div>
         <div className="button-month" onClick={setNextMonth}>{`>`}</div>
       </div>
       <div className="calendar__body">

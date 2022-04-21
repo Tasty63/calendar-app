@@ -7,7 +7,10 @@ import './CalendarDay.scss';
 
 function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
   const [isModalActive, setModalActive] = useState(false);
-  const events = useAppSelector((state) => state.events.filter((event) => event.day === date.toDateString()));
+  const dayEvents = useAppSelector((state) =>
+    state.dayEvents.filter((dayEvent) => dayEvent.day === date.toDateString())
+  );
+
   const isToday = (date: Date) => date.toDateString() === new Date().toDateString();
 
   const dayClassName = isFromCurrentMonth
@@ -22,7 +25,7 @@ function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
         {date.getDate()}
       </div>
       <Modal isActive={isModalActive} setActive={setModalActive}>
-        <EventList date={date} events={events} />
+        <EventList date={date} dayEvents={dayEvents} />
       </Modal>
     </>
   );

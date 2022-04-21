@@ -8,52 +8,59 @@ const initialState: DayEventProps[] = [
     title: 'Сходить в магазин',
     description: 'Купить: яйца, молоко, хлеб',
     participants: ['Пётр'],
-    time: '17:00 - 17:30',
+    startTime: '17:00',
+    endTime: '17:30',
   },
   {
     id: 2,
     day: 'Thu Apr 21 2022',
     title: 'Вынести мусор',
-    description: '',
-    participants: ['Пётр'],
-    time: '17:30 - 17:35',
+    description: 'lorem',
+    participants: ['Пётр, Алексей, Александр'],
+    startTime: '17:00',
+    endTime: '17:30',
   },
   {
-    id: 2,
+    id: 3,
+    day: 'Thu Apr 21 2022',
+    title: 'Вынести мусор',
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores optio sed natus voluptas. Eaque voluptatum
+    fugiat explicabo. Dolores sed, maiores rem id, ut molestiae nesciunt, corporis maxime tempore ea recusandae.`,
+    participants: ['Пётр'],
+    startTime: '17:00',
+    endTime: '17:30',
+  },
+  {
+    id: 4,
     day: 'Thu Apr 21 2022',
     title: 'Вынести мусор',
     description: '',
     participants: ['Пётр'],
-    time: '17:30 - 17:35',
+    startTime: '17:00',
+    endTime: '17:30',
   },
   {
-    id: 2,
+    id: 5,
     day: 'Thu Apr 21 2022',
     title: 'Вынести мусор',
     description: '',
     participants: ['Пётр'],
-    time: '17:30 - 17:35',
+    startTime: '17:00',
+    endTime: '17:30',
   },
   {
-    id: 2,
-    day: 'Thu Apr 21 2022',
+    id: 6,
+    day: 'Thu Mar 31 2022',
     title: 'Вынести мусор',
     description: '',
     participants: ['Пётр'],
-    time: '17:30 - 17:35',
-  },
-  {
-    id: 2,
-    day: 'Thu Apr 21 2022',
-    title: 'Вынести мусор',
-    description: '',
-    participants: ['Пётр'],
-    time: '17:30 - 17:35',
+    startTime: '17:00',
+    endTime: '17:30',
   },
 ];
 
 export const eventSlice = createSlice({
-  name: 'event',
+  name: 'dayEvent',
   initialState,
   reducers: {
     add: (state, action: PayloadAction<DayEventProps>) => {
@@ -63,9 +70,7 @@ export const eventSlice = createSlice({
       return state.filter((event) => event.id !== action.payload);
     },
     update: (state, action: PayloadAction<DayEventProps>) => {
-      return state.map((event) => {
-        return event.id === action.payload.id ? action.payload : event;
-      });
+      return state.map((event) => (event.id === action.payload.id ? action.payload : event));
     },
   },
 });

@@ -3,7 +3,7 @@ import eventReducer from './reducers/eventSlice';
 
 export const store = configureStore({
   reducer: {
-    events: eventReducer,
+    dayEvents: eventReducer,
   },
 });
 

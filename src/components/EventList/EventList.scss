@@ -13,10 +13,32 @@
     font-size: 30px;
     padding: 5px 0;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__day {
+    flex: 1 1 auto;
     display: flex;
     justify-content: center;
+    margin-left: 40px;
+  }
+
+  &__button-add {
+    display: flex;
+    flex: 0 0 0;
+    border-radius: 25%;
+    padding: 0 10px;
+    font-size: 35px;
+    color: white;
+    border: none;
+    background: $calendar-secondary-color;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
   }
 }

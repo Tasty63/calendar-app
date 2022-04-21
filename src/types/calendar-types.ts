@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { TimePickerValue } from 'react-time-picker';
 
 export interface CalendarDayProps {
   date: Date;
@@ -9,7 +10,8 @@ export interface DayEventProps {
   id: number;
   day: string;
   title: string;
-  time: string;
+  startTime: TimePickerValue;
+  endTime: TimePickerValue;
   participants: string[];
   description: string;
 }
@@ -22,5 +24,10 @@ export interface ModalProps {
 
 export interface EventListProps {
   date: Date;
-  events: DayEventProps[];
+  dayEvents: DayEventProps[];
+}
+
+export interface EventFormProps {
+  date: Date;
+  setModalActive: (state: boolean) => void;
 }
