@@ -5,7 +5,7 @@ const initialState: DayEventProps[] = [
   {
     id: 1,
     day: 'Thu Apr 21 2022',
-    name: 'Сходить в магазин',
+    title: 'Сходить в магазин',
     description: 'Купить: яйца, молоко, хлеб',
     participants: ['Пётр'],
     time: '17:00 - 17:30',
@@ -13,7 +13,39 @@ const initialState: DayEventProps[] = [
   {
     id: 2,
     day: 'Thu Apr 21 2022',
-    name: 'Вынести мусор',
+    title: 'Вынести мусор',
+    description: '',
+    participants: ['Пётр'],
+    time: '17:30 - 17:35',
+  },
+  {
+    id: 2,
+    day: 'Thu Apr 21 2022',
+    title: 'Вынести мусор',
+    description: '',
+    participants: ['Пётр'],
+    time: '17:30 - 17:35',
+  },
+  {
+    id: 2,
+    day: 'Thu Apr 21 2022',
+    title: 'Вынести мусор',
+    description: '',
+    participants: ['Пётр'],
+    time: '17:30 - 17:35',
+  },
+  {
+    id: 2,
+    day: 'Thu Apr 21 2022',
+    title: 'Вынести мусор',
+    description: '',
+    participants: ['Пётр'],
+    time: '17:30 - 17:35',
+  },
+  {
+    id: 2,
+    day: 'Thu Apr 21 2022',
+    title: 'Вынести мусор',
     description: '',
     participants: ['Пётр'],
     time: '17:30 - 17:35',
@@ -28,10 +60,10 @@ export const eventSlice = createSlice({
       state.push(action.payload);
     },
     remove: (state, action: PayloadAction<number>) => {
-      state = state.filter((event) => event.id !== action.payload);
+      return state.filter((event) => event.id !== action.payload);
     },
     update: (state, action: PayloadAction<DayEventProps>) => {
-      state = state.map((event) => {
+      return state.map((event) => {
         return event.id === action.payload.id ? action.payload : event;
       });
     },

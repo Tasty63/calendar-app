@@ -1,7 +1,13 @@
 @import '../../config/variables.scss';
 
 .event-list {
+  width: 100%;
+  height: 100%;
   padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+  border: 10px solid $calendar-secondary-color;
+  border-radius: 15px;
 
   &__header {
     font-size: 30px;

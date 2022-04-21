@@ -8,7 +8,7 @@ export interface CalendarDayProps {
 export interface DayEventProps {
   id: number;
   day: string;
-  name: string;
+  title: string;
   time: string;
   participants: string[];
   description: string;

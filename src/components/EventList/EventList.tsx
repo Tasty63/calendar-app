@@ -16,7 +16,7 @@ function EventList({ date, events }: EventListProps) {
               <DayEvent
                 id={event.id}
                 day={event.day}
-                name={event.name}
+                title={event.title}
                 time={event.time}
                 description={event.description}
                 participants={event.participants}
