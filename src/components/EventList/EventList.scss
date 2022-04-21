@@ -1,0 +1,13 @@
+@import '../../config/variables.scss';
+
+.event-list {
+  &__header {
+    padding: 5px 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__body {
+    border-bottom: 1px solid $calendar-color;
+  }
+}

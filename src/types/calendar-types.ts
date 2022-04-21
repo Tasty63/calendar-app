@@ -5,21 +5,22 @@ export interface CalendarDayProps {
   isFromCurrentMonth: boolean;
 }
 
-export interface CalendarState {
-  events: DayEvent[];
-}
-
-export interface DayEvent {
+export interface DayEventProps {
   id: number;
-  day: Date;
+  day: string;
   name: string;
-  time: Date;
+  time: number;
   participants: string[];
   description: string;
 }
 
-export type ModalProps = {
+export interface ModalProps {
   isActive: boolean;
   setActive: (state: boolean) => void;
   children: ReactNode;
-};
+}
+
+export interface EventListProps {
+  date: Date;
+  events: DayEventProps[];
+}
