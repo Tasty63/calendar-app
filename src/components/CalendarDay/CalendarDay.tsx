@@ -8,7 +8,7 @@ import './CalendarDay.scss';
 function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
   const [isModalActive, setModalActive] = useState(false);
   const dayEvents = useAppSelector((state) =>
-    state.dayEvents.filter((dayEvent) => dayEvent.day === date.toDateString())
+    state.persistedReducer.dayEvents.filter((dayEvent) => dayEvent.day === date.toDateString())
   );
 
   const isToday = (date: Date) => date.toDateString() === new Date().toDateString();

@@ -16,10 +16,6 @@
 
   &_other-month {
     background-color: $calendar-other-day-color;
-
-    &:hover {
-      border: 2px solid black;
-    }
   }
 
   &_today {
