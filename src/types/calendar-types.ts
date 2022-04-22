@@ -31,3 +31,8 @@ export interface EventFormProps {
   date: Date;
   setModalActive: (state: boolean) => void;
 }
+
+export interface MemberListProps {
+  list: string[];
+  addMember: React.Dispatch<React.SetStateAction<string[]>>;
+}

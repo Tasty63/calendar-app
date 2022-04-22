@@ -3,6 +3,7 @@ import TimePicker, { TimePickerValue } from 'react-time-picker';
 import { useAppDispatch } from '../../redux/hooks';
 import { add } from '../../redux/reducers/eventSlice';
 import { EventFormProps } from '../../types/calendar-types';
+import MemberList from '../MemberList/MemberList';
 import './EventForm.scss';
 
 function EventForm({ date, setModalActive }: EventFormProps) {
@@ -10,6 +11,7 @@ function EventForm({ date, setModalActive }: EventFormProps) {
   const [description, setDescription] = useState('');
   const [startTime, setStartTime] = useState<TimePickerValue>('8:00');
   const [endTime, setEndTime] = useState<TimePickerValue>('8:00');
+  const [memberList, addMember] = useState<string[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -65,10 +67,7 @@ function EventForm({ date, setModalActive }: EventFormProps) {
           ></textarea>
         </div>
         <div className="event-form__field">
-          <label htmlFor="" className="event-form__label">
-            Add Event Participants
-          </label>
-          <input type="text" className="event-form__input" />
+          <MemberList list={memberList} addMember={addMember} />
         </div>
       </div>
       <button type="submit" className="event-form__button-submit">

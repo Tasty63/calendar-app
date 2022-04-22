@@ -1,0 +1,12 @@
+.event-form {
+  &__members {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__member {
+    background-color: rgba(128, 128, 128, 0.393);
+    margin-right: 5px;
+    padding: 0 5px;
+  }
+}
