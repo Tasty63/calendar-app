@@ -21,8 +21,8 @@ function EventForm({ date, handleCloseModal, mode, parameters }: EventFormProps)
     mode === 'Update' && parameters
       ? dispatch(
           update({
-            id: parameters?.id,
-            day: parameters?.day,
+            id: parameters.id,
+            day: parameters.day,
             title: titleValue,
             description: descriptionValue,
             startTime: startTimeValue,

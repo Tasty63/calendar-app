@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { months, noEventsText } from '../../config/constants';
-import { EventFormProps, EventListProps } from '../../types/calendar-types';
+import { EventListProps } from '../../types/calendar-types';
 import DayEvent from '../DayEvent/DayEvent';
 import EventForm from '../EventForm/EventForm';
 import Modal from '../Modal/Modal';

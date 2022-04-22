@@ -1,6 +1,7 @@
 @import '../../config/variables.scss';
 
 .calendar__day {
+  position: relative;
   display: flex;
   justify-content: center;
   flex: 0 0 calc(100% / 7);
@@ -24,4 +25,20 @@
   &_today {
     border: 2px solid $calendar-today-color;
   }
+}
+
+.calendar__indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 20px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  background: $calendar-color;
+  color: white;
+  text-align: center;
+}
+
+.calendar__date {
+  font-size: 20px;
 }
