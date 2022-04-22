@@ -24,7 +24,7 @@ function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
       <div className={dayClassName} onClick={() => setModalActive(true)}>
         {date.getDate()}
       </div>
-      <Modal isActive={isModalActive} setActive={setModalActive}>
+      <Modal isActive={isModalActive} handleClose={() => setModalActive(false)}>
         <EventList date={date} dayEvents={dayEvents} />
       </Modal>
     </>

@@ -5,10 +5,10 @@ import './Modal.scss';
 
 const modalRoot = document.getElementById('modal-root');
 
-function Modal({ isActive, setActive, children }: ModalProps) {
+function Modal({ isActive, handleClose, children }: ModalProps) {
   return isActive
     ? ReactDom.createPortal(
-        <div className="modal" onClick={() => setActive(false)}>
+        <div className="modal" onClick={handleClose}>
           <div className="modal__content" onClick={(event) => event.stopPropagation()}>
             {children}
           </div>

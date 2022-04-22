@@ -1,34 +1,46 @@
 import React, { useState } from 'react';
 import TimePicker, { TimePickerValue } from 'react-time-picker';
 import { useAppDispatch } from '../../redux/hooks';
-import { add } from '../../redux/reducers/eventSlice';
+import { add, update } from '../../redux/reducers/eventSlice';
 import { EventFormProps } from '../../types/calendar-types';
 import MemberList from '../MemberList/MemberList';
 import './EventForm.scss';
 
-function EventForm({ date, setModalActive }: EventFormProps) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [startTime, setStartTime] = useState<TimePickerValue>('8:00');
-  const [endTime, setEndTime] = useState<TimePickerValue>('8:00');
-  const [memberList, addMember] = useState<string[]>([]);
+function EventForm({ date, handleCloseModal, mode, parameters }: EventFormProps) {
+  const [titleValue, setTitle] = useState(parameters?.title || '');
+  const [descriptionValue, setDescription] = useState(parameters?.description || '');
+  const [startTimeValue, setStartTime] = useState<TimePickerValue>(parameters?.startTime || '8:00');
+  const [endTimeValue, setEndTime] = useState<TimePickerValue>(parameters?.endTime || '8:00');
+  const [memberList, addMember] = useState<string[]>(parameters?.participants || []);
 
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    dispatch(
-      add({
-        id: new Date().getMilliseconds(),
-        day: date.toDateString(),
-        title,
-        description,
-        startTime,
-        endTime,
-        participants: [''],
-      })
-    );
-    setModalActive(false);
+    handleCloseModal();
+    mode === 'Update' && parameters
+      ? dispatch(
+          update({
+            id: parameters?.id,
+            day: parameters?.day,
+            title: titleValue,
+            description: descriptionValue,
+            startTime: startTimeValue,
+            endTime: endTimeValue,
+            participants: memberList,
+          })
+        )
+      : dispatch(
+          add({
+            id: new Date().getMilliseconds(),
+            day: date,
+            title: titleValue,
+            description: descriptionValue,
+            startTime: startTimeValue,
+            endTime: endTimeValue,
+            participants: memberList,
+          })
+        );
   };
 
   return (
@@ -41,7 +53,7 @@ function EventForm({ date, setModalActive }: EventFormProps) {
           <input
             type="text"
             className="event-form__input"
-            value={title}
+            value={titleValue}
             onChange={(event) => setTitle(event.target.value)}
           />
         </div>
@@ -49,9 +61,9 @@ function EventForm({ date, setModalActive }: EventFormProps) {
           <label htmlFor="" className="event-form__label">
             Event Time
           </label>
-          <TimePicker maxTime={endTime} disableClock value={startTime} onChange={setStartTime} />
+          <TimePicker maxTime={endTimeValue} disableClock value={startTimeValue} onChange={setStartTime} />
           -
-          <TimePicker disableClock value={endTime} onChange={setEndTime} />
+          <TimePicker disableClock value={endTimeValue} onChange={setEndTime} />
         </div>
         <div className="event-form__field">
           <label htmlFor="" className="event-form__label">
@@ -62,7 +74,7 @@ function EventForm({ date, setModalActive }: EventFormProps) {
             id=""
             cols={20}
             rows={2}
-            value={description}
+            value={descriptionValue}
             onChange={(event) => setDescription(event.target.value)}
           ></textarea>
         </div>

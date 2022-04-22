@@ -18,7 +18,7 @@ export interface DayEventProps {
 
 export interface ModalProps {
   isActive: boolean;
-  setActive: (state: boolean) => void;
+  handleClose: () => void;
   children: ReactNode;
 }
 
@@ -28,9 +28,13 @@ export interface EventListProps {
 }
 
 export interface EventFormProps {
-  date: Date;
-  setModalActive: (state: boolean) => void;
+  date: string;
+  handleCloseModal: () => void;
+  mode: EventFormMode;
+  parameters?: DayEventProps;
 }
+
+export type EventFormMode = 'Add' | 'Update';
 
 export interface MemberListProps {
   list: string[];

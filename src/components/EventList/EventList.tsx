@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { months, noEventsText } from '../../config/constants';
-import { EventListProps } from '../../types/calendar-types';
+import { EventFormProps, EventListProps } from '../../types/calendar-types';
 import DayEvent from '../DayEvent/DayEvent';
 import EventForm from '../EventForm/EventForm';
 import Modal from '../Modal/Modal';
@@ -35,8 +35,8 @@ function EventList({ date, dayEvents }: EventListProps) {
             : noEventsText}
         </div>
       </div>
-      <Modal isActive={isModalActive} setActive={setModalActive}>
-        <EventForm setModalActive={setModalActive} date={date} />
+      <Modal isActive={isModalActive} handleClose={() => setModalActive(false)}>
+        <EventForm handleCloseModal={() => setModalActive(false)} date={date.toDateString()} mode="Add" />
       </Modal>
     </>
   );
