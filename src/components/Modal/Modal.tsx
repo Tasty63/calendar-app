@@ -8,8 +8,8 @@ const modalRoot = document.getElementById('modal-root');
 function Modal({ isActive, handleClose, children }: ModalProps) {
   return isActive
     ? ReactDom.createPortal(
-        <div className="modal" onClick={handleClose}>
-          <div className="modal__content" onClick={(event) => event.stopPropagation()}>
+        <div className="modal" onMouseDown={handleClose}>
+          <div className="modal__content" onMouseDown={(event) => event.stopPropagation()}>
             {children}
           </div>
         </div>,

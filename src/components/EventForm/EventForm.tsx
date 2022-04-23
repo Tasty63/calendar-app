@@ -1,46 +1,61 @@
 import React, { useState } from 'react';
 import TimePicker, { TimePickerValue } from 'react-time-picker';
+import { noTitleText } from '../../config/constants';
 import { useAppDispatch } from '../../redux/hooks';
 import { add, update } from '../../redux/reducers/eventSlice';
 import { EventFormProps } from '../../types/calendar-types';
 import MemberList from '../MemberList/MemberList';
 import './EventForm.scss';
 
-function EventForm({ date, handleCloseModal, mode, parameters }: EventFormProps) {
+function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) {
   const [titleValue, setTitle] = useState(parameters?.title || '');
   const [descriptionValue, setDescription] = useState(parameters?.description || '');
-  const [startTimeValue, setStartTime] = useState<TimePickerValue>(parameters?.startTime || '8:00');
-  const [endTimeValue, setEndTime] = useState<TimePickerValue>(parameters?.endTime || '8:00');
-  const [memberList, addMember] = useState<string[]>(parameters?.participants || []);
+  const [startTimeValue, setStartTime] = useState<TimePickerValue>(parameters?.startTime || '09:00');
+  const [endTimeValue, setEndTime] = useState<TimePickerValue>(parameters?.endTime || '10:00');
+  const [memberList, addMember] = useState<string[]>(parameters?.members || []);
+
+  const handleTimeStartChange = (value: TimePickerValue) => {
+    if (value > endTimeValue) {
+      setEndTime(value);
+    }
+    setStartTime(value);
+  };
+
+  const handleEndTimeChange = (value: TimePickerValue) => {
+    if (value < startTimeValue) {
+      setStartTime(value);
+    }
+    setEndTime(value);
+  };
 
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    handleCloseModal();
     mode === 'Update' && parameters
       ? dispatch(
           update({
             id: parameters.id,
             day: parameters.day,
-            title: titleValue,
+            title: titleValue || noTitleText,
             description: descriptionValue,
             startTime: startTimeValue,
             endTime: endTimeValue,
-            participants: memberList,
+            members: memberList,
           })
         )
       : dispatch(
           add({
             id: new Date().getMilliseconds(),
-            day: date,
-            title: titleValue,
+            day,
+            title: titleValue || noTitleText,
             description: descriptionValue,
             startTime: startTimeValue,
             endTime: endTimeValue,
-            participants: memberList,
+            members: memberList,
           })
         );
+    handleCloseModal();
   };
 
   return (
@@ -61,9 +76,9 @@ function EventForm({ date, handleCloseModal, mode, parameters }: EventFormProps)
           <label htmlFor="" className="event-form__label">
             Event Time
           </label>
-          <TimePicker maxTime={endTimeValue} disableClock value={startTimeValue} onChange={setStartTime} />
+          <TimePicker disableClock value={startTimeValue} onChange={handleTimeStartChange} />
           -
-          <TimePicker disableClock value={endTimeValue} onChange={setEndTime} />
+          <TimePicker disableClock value={endTimeValue} onChange={handleEndTimeChange} />
         </div>
         <div className="event-form__field">
           <label htmlFor="" className="event-form__label">
@@ -83,7 +98,7 @@ function EventForm({ date, handleCloseModal, mode, parameters }: EventFormProps)
         </div>
       </div>
       <button type="submit" className="event-form__button-submit">
-        Добавить
+        Сохранить
       </button>
     </form>
   );

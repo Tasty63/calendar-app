@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { TimePickerValue } from 'react-time-picker';
 import { months, noEventsText } from '../../config/constants';
-import { EventListProps } from '../../types/calendar-types';
+import { DayEventParameters, DayEventProps, EventListProps } from '../../types/calendar-types';
 import DayEvent from '../DayEvent/DayEvent';
 import EventForm from '../EventForm/EventForm';
 import Modal from '../Modal/Modal';
@@ -8,6 +9,14 @@ import './EventList.scss';
 
 function EventList({ date, dayEvents }: EventListProps) {
   const [isModalActive, setModalActive] = useState(false);
+  const [draggedDayEvent, setDraggedDayEvent] = useState<DayEventParameters | null>(null);
+
+  const sortByStartHours = (firstEvent: DayEventParameters, secondEvent: DayEventParameters) => {
+    return (
+      parseInt((firstEvent.startTime as string).replace(':', ''), 10) -
+      parseInt((secondEvent.startTime as string).replace(':', ''), 10)
+    );
+  };
 
   return (
     <>
@@ -20,23 +29,21 @@ function EventList({ date, dayEvents }: EventListProps) {
         </div>
         <div className="event-list__body">
           {dayEvents.length
-            ? dayEvents.map((event) => (
-                <DayEvent
-                  id={event.id}
-                  day={event.day}
-                  title={event.title}
-                  startTime={event.startTime}
-                  endTime={event.endTime}
-                  description={event.description}
-                  participants={event.participants}
-                  key={event.id}
-                />
-              ))
+            ? dayEvents
+                .sort(sortByStartHours)
+                .map(({ id, day, title, startTime, endTime, description, members }) => (
+                  <DayEvent
+                    parameters={{ id, day, title, startTime, endTime, description, members }}
+                    draggedDayEvent={draggedDayEvent}
+                    setDraggedDayEvent={setDraggedDayEvent}
+                    key={id}
+                  />
+                ))
             : noEventsText}
         </div>
       </div>
       <Modal isActive={isModalActive} handleClose={() => setModalActive(false)}>
-        <EventForm handleCloseModal={() => setModalActive(false)} date={date.toDateString()} mode="Add" />
+        <EventForm handleCloseModal={() => setModalActive(false)} day={date.toDateString()} mode="Add" />
       </Modal>
     </>
   );

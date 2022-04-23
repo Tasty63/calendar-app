@@ -6,14 +6,20 @@ export interface CalendarDayProps {
   isFromCurrentMonth: boolean;
 }
 
-export interface DayEventProps {
+export interface DayEventParameters {
   id: number;
   day: string;
   title: string;
   startTime: TimePickerValue;
   endTime: TimePickerValue;
-  participants: string[];
+  members: string[];
   description: string;
+}
+
+export interface DayEventProps {
+  draggedDayEvent: DayEventParameters | null;
+  setDraggedDayEvent: React.Dispatch<React.SetStateAction<DayEventParameters | null>>;
+  parameters: DayEventParameters;
 }
 
 export interface ModalProps {
@@ -24,14 +30,14 @@ export interface ModalProps {
 
 export interface EventListProps {
   date: Date;
-  dayEvents: DayEventProps[];
+  dayEvents: DayEventParameters[];
 }
 
 export interface EventFormProps {
-  date: string;
+  day: string;
   handleCloseModal: () => void;
   mode: EventFormMode;
-  parameters?: DayEventProps;
+  parameters?: DayEventParameters;
 }
 
 export type EventFormMode = 'Add' | 'Update';

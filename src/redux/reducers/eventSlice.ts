@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DayEventProps } from '../../types/calendar-types';
+import { DayEventParameters } from '../../types/calendar-types';
 
-const initialState: DayEventProps[] = [
+const initialState: DayEventParameters[] = [
   {
     id: 1,
     day: 'Thu Apr 21 2022',
     title: 'Сходить в магазин',
     description: 'Купить: яйца, молоко, хлеб',
-    participants: ['Пётр'],
+    members: ['Пётр'],
     startTime: '17:00',
     endTime: '17:30',
   },
@@ -16,7 +16,7 @@ const initialState: DayEventProps[] = [
     day: 'Thu Apr 21 2022',
     title: 'Вынести мусор',
     description: 'lorem',
-    participants: ['Пётр', 'Алексей', 'Александр'],
+    members: ['Пётр', 'Алексей', 'Александр'],
     startTime: '17:00',
     endTime: '17:30',
   },
@@ -26,7 +26,7 @@ const initialState: DayEventProps[] = [
     title: 'Вынести мусор',
     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores optio sed natus voluptas. Eaque voluptatum
     fugiat explicabo. Dolores sed, maiores rem id, ut molestiae nesciunt, corporis maxime tempore ea recusandae.`,
-    participants: ['Пётр'],
+    members: ['Пётр'],
     startTime: '17:00',
     endTime: '17:30',
   },
@@ -35,7 +35,7 @@ const initialState: DayEventProps[] = [
     day: 'Thu Mar 31 2022',
     title: 'Вынести мусор',
     description: '',
-    participants: ['Пётр'],
+    members: ['Пётр'],
     startTime: '17:00',
     endTime: '17:30',
   },
@@ -45,13 +45,13 @@ export const eventSlice = createSlice({
   name: 'dayEvent',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<DayEventProps>) => {
+    add: (state, action: PayloadAction<DayEventParameters>) => {
       state.push(action.payload);
     },
     remove: (state, action: PayloadAction<number>) => {
       return state.filter((event) => event.id !== action.payload);
     },
-    update: (state, action: PayloadAction<DayEventProps>) => {
+    update: (state, action: PayloadAction<DayEventParameters>) => {
       return state.map((event) => (event.id === action.payload.id ? action.payload : event));
     },
   },
