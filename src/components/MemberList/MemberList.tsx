@@ -15,7 +15,6 @@ function MemberList({ list, addMember }: MemberListProps) {
       <div className="member-list__field">
         <input
           type="text"
-          minLength={2}
           placeholder="Add Event Members"
           className="member-list__input"
           value={memberName}
@@ -27,9 +26,9 @@ function MemberList({ list, addMember }: MemberListProps) {
       </div>
       <div className="member-list__members">
         {list.map((member, index) => (
-          <span key={index} className="member-list__member">
+          <div key={index} className="member-list__member">
             {member}
-          </span>
+          </div>
         ))}
       </div>
     </div>

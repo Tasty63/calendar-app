@@ -21,6 +21,11 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
     setEdit(false);
   };
 
+  const handleEditEvent = () => {
+    setEdit(true);
+    setModalActive(true);
+  };
+
   const handleDragStart = (event: React.DragEvent, dayParameters: DayEventParameters) => {
     setDraggedDayEvent(dayParameters);
   };
@@ -69,13 +74,7 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
           <button className="day-event__button-delete" onClick={() => disptach(remove(id))}>
             X
           </button>
-          <button
-            className="day-event__button-update"
-            onClick={() => {
-              setEdit(true);
-              setModalActive(true);
-            }}
-          >
+          <button className="day-event__button-update" onClick={handleEditEvent}>
             \
           </button>
         </div>

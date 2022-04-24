@@ -2,8 +2,8 @@
 
 .day-event {
   width: 100%;
-  padding: 10px;
   display: flex;
+  padding: 10px;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
@@ -33,6 +33,11 @@
 
   &__button-delete,
   &__button-update {
+    background-color: $calendar-secondary-color;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+
     &:hover {
       cursor: pointer;
     }

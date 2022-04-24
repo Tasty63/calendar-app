@@ -11,12 +11,12 @@
   &__input {
     flex: 1 1 auto;
     padding: 10px;
+    font-size: 20px;
     box-sizing: border-box;
   }
 
   &__button-add {
-    flex-basis: 50px;
-    padding: 0 10px;
+    padding: 0 15px;
     font-size: 35px;
     border: none;
     color: white;
@@ -31,7 +31,8 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    max-height: 75px;
+    max-height: 25px;
+    margin: 5px 0;
     box-sizing: border-box;
     overflow: auto;
   }
@@ -39,7 +40,7 @@
   &__member {
     background-color: $calendar-secondary-color;
     color: white;
-    margin-right: 5px;
+    margin: 5px 5px 5px 0;
     padding: 0 5px;
   }
 }
