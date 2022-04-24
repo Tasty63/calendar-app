@@ -1,3 +1,5 @@
+@import '../../config/variables.scss';
+
 .modal {
   width: 100vw;
   height: 100vh;
@@ -10,10 +12,13 @@
 
   &__content {
     width: 50vw;
-    box-sizing: border-box;
     height: 400px;
     max-height: 100%;
+    border: 5px solid $calendar-secondary-color;
     border-radius: 15px;
+    box-sizing: border-box;
     background-color: white;
+    overflow: hidden;
+    overflow-y: auto;
   }
 }

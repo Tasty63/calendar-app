@@ -16,6 +16,8 @@ export interface DayEventParameters {
   description: string;
 }
 
+export type EventInfoProps = Omit<DayEventParameters, 'id' | 'day'>;
+
 export interface DayEventProps {
   draggedDayEvent: DayEventParameters | null;
   setDraggedDayEvent: React.Dispatch<React.SetStateAction<DayEventParameters | null>>;

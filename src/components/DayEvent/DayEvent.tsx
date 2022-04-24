@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { TimePickerValue } from 'react-time-picker';
 import { useAppDispatch } from '../../redux/hooks';
 import { remove, update } from '../../redux/reducers/eventSlice';
 import { DayEventProps, DayEventParameters } from '../../types/calendar-types';
+import { getClosestElement } from '../../utils/utils';
 import EventForm from '../EventForm/EventForm';
+import EventInfo from '../EventInfo/EventInfo';
 import Modal from '../Modal/Modal';
 import './DayEvent.scss';
 
@@ -26,26 +27,25 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
 
   const handleDragOver = (event: React.DragEvent) => {
     event.preventDefault();
-    const target = event.target as HTMLDivElement;
-    const dayEventElem = target.closest('.day-event') as HTMLDivElement;
-    dayEventElem.classList.add('day-event_active');
+
+    const dayEventElem = getClosestElement(event.target, '.day-event');
+    dayEventElem && dayEventElem.classList.add('day-event_active');
   };
 
   const handleDragEnd = (event: React.DragEvent) => {
-    const target = event.target as HTMLDivElement;
-    const dayEventElem = target.closest('.day-event') as HTMLDivElement;
-    dayEventElem.classList.remove('day-event_active');
+    const dayEventElem = getClosestElement(event.target, '.day-event');
+    dayEventElem && dayEventElem.classList.remove('day-event_active');
   };
 
   const handleDrop = (event: React.DragEvent, dayParameters: DayEventParameters) => {
     event.preventDefault();
-    const target = event.target as HTMLDivElement;
-    const dayEventElem = target.closest('.day-event') as HTMLDivElement;
-    dayEventElem.classList.remove('day-event_active');
 
     if (!draggedDayEvent) {
       return;
     }
+
+    const dayEventElem = getClosestElement(event.target, '.day-event');
+    dayEventElem && dayEventElem.classList.remove('day-event_active');
 
     disptach(update({ ...draggedDayEvent, startTime: dayParameters.startTime, endTime: dayParameters.endTime }));
     disptach(update({ ...dayParameters, startTime: draggedDayEvent.startTime, endTime: draggedDayEvent.endTime }));
@@ -89,19 +89,13 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
             parameters={{ id, title, day, startTime, endTime, description, members }}
           />
         ) : (
-          <div className="day-event__info">
-            <div className="div">Title: {title}</div>
-            <div className="div">{`Time: ${startTime}-${endTime}`}</div>
-            <div className="div">Description: {description}</div>
-            <div className="day-event__members">
-              Participants:
-              {members.map((member, index) => (
-                <span key={index} className="day-event__member">
-                  {index === members.length - 1 ? member : `${member}, `}
-                </span>
-              ))}
-            </div>
-          </div>
+          <EventInfo
+            title={title}
+            startTime={startTime}
+            endTime={endTime}
+            description={description}
+            members={members}
+          />
         )}
       </Modal>
     </>

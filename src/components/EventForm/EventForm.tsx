@@ -62,33 +62,35 @@ function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) 
     <form className="event-form" onSubmit={handleSubmit}>
       <div className="event-form__inputs">
         <div className="event-form__field">
-          <label htmlFor="" className="event-form__label">
-            Event Title
-          </label>
           <input
             type="text"
             className="event-form__input"
+            placeholder="Event Title"
             value={titleValue}
             onChange={(event) => setTitle(event.target.value)}
           />
         </div>
+
         <div className="event-form__field">
-          <label htmlFor="" className="event-form__label">
-            Event Time
-          </label>
-          <TimePicker disableClock value={startTimeValue} onChange={handleTimeStartChange} />
-          -
-          <TimePicker disableClock value={endTimeValue} onChange={handleEndTimeChange} />
+          <div className="event-form__time time">
+            <TimePicker
+              className="time__input"
+              hourHandWidth={20}
+              disableClock
+              value={startTimeValue}
+              onChange={handleTimeStartChange}
+            />
+            <div className="dash">&#8212;</div>
+            <TimePicker className="time__input" disableClock value={endTimeValue} onChange={handleEndTimeChange} />
+          </div>
         </div>
+
         <div className="event-form__field">
-          <label htmlFor="" className="event-form__label">
-            Event Description
-          </label>
           <textarea
             name=""
             id=""
-            cols={20}
-            rows={2}
+            placeholder="Event Description"
+            className="event-form__description"
             value={descriptionValue}
             onChange={(event) => setDescription(event.target.value)}
           ></textarea>
@@ -97,8 +99,9 @@ function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) 
           <MemberList list={memberList} addMember={addMember} />
         </div>
       </div>
+
       <button type="submit" className="event-form__button-submit">
-        Сохранить
+        Save
       </button>
     </form>
   );

@@ -1,0 +1,67 @@
+@import '../../config/variables.scss';
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 20px 50px 50px 50px;
+  border-radius: 15px;
+  box-sizing: border-box;
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1 1 auto;
+  }
+
+  &__field {
+    margin: 10px 0;
+  }
+
+  &__time {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__description {
+    width: 100%;
+    padding: 10px;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  &__button-submit {
+    align-self: flex-end;
+    max-width: 100px;
+    padding: 5px 10px;
+    font-size: 25px;
+    color: white;
+    border: none;
+    background: $calendar-secondary-color;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.dash {
+  display: flex;
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.time__input {
+  text-align: center;
+  width: 100%;
+}

@@ -9,7 +9,7 @@ const initialState: DayEventParameters[] = [
     description: 'Купить: яйца, молоко, хлеб',
     members: ['Пётр'],
     startTime: '17:00',
-    endTime: '17:30',
+    endTime: '17:15',
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const initialState: DayEventParameters[] = [
     title: 'Вынести мусор',
     description: 'lorem',
     members: ['Пётр', 'Алексей', 'Александр'],
-    startTime: '17:00',
+    startTime: '17:20',
     endTime: '17:30',
   },
   {
@@ -27,8 +27,8 @@ const initialState: DayEventParameters[] = [
     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores optio sed natus voluptas. Eaque voluptatum
     fugiat explicabo. Dolores sed, maiores rem id, ut molestiae nesciunt, corporis maxime tempore ea recusandae.`,
     members: ['Пётр'],
-    startTime: '17:00',
-    endTime: '17:30',
+    startTime: '17:30',
+    endTime: '17:32',
   },
   {
     id: 6,

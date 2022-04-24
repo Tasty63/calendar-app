@@ -11,28 +11,28 @@ function MemberList({ list, addMember }: MemberListProps) {
   };
 
   return (
-    <>
-      <label htmlFor="" className="event-form__label">
-        Add Event Participants
-      </label>
-      <input
-        type="text"
-        minLength={2}
-        className="event-form__input"
-        value={memberName}
-        onChange={(event) => setMemberName(event.target.value)}
-      />
-      <button type="button" className="event-form__button-add-member" onClick={handleAddMember}>
-        +
-      </button>
-      <div className="event-form__members">
+    <div className="member-list">
+      <div className="member-list__field">
+        <input
+          type="text"
+          minLength={2}
+          placeholder="Add Event Members"
+          className="member-list__input"
+          value={memberName}
+          onChange={(event) => setMemberName(event.target.value)}
+        />
+        <button type="button" className="member-list__button-add" onClick={handleAddMember}>
+          +
+        </button>
+      </div>
+      <div className="member-list__members">
         {list.map((member, index) => (
-          <span key={index} className="event-form__member">
+          <span key={index} className="member-list__member">
             {member}
           </span>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { TimePickerValue } from 'react-time-picker';
 import { months, noEventsText } from '../../config/constants';
-import { DayEventParameters, DayEventProps, EventListProps } from '../../types/calendar-types';
+import { DayEventParameters, EventListProps } from '../../types/calendar-types';
 import DayEvent from '../DayEvent/DayEvent';
 import EventForm from '../EventForm/EventForm';
 import Modal from '../Modal/Modal';
