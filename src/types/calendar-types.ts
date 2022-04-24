@@ -12,7 +12,7 @@ export interface DayEventParameters {
   title: string;
   startTime: TimePickerValue;
   endTime: TimePickerValue;
-  members: string[];
+  members: Member[];
   description: string;
 }
 
@@ -45,6 +45,11 @@ export interface EventFormProps {
 export type EventFormMode = 'Add' | 'Update';
 
 export interface MemberListProps {
-  list: string[];
-  addMember: React.Dispatch<React.SetStateAction<string[]>>;
+  list: Member[];
+  setMembers: React.Dispatch<React.SetStateAction<Member[]>>;
+}
+
+export interface Member {
+  id: number;
+  name: string;
 }

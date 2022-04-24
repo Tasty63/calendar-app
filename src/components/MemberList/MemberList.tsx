@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { MemberListProps } from '../../types/calendar-types';
 import './MemberList.scss';
 
-function MemberList({ list, addMember }: MemberListProps) {
+function MemberList({ list, setMembers }: MemberListProps) {
   const [memberName, setMemberName] = useState('');
 
   const handleAddMember = () => {
-    addMember([...list, memberName]);
+    setMembers([...list, { id: new Date().getMilliseconds(), name: memberName }]);
     setMemberName('');
+  };
+
+  const handleDeleteMember = (id: number) => {
+    setMembers(list.filter((member) => member.id !== id));
   };
 
   return (
@@ -25,9 +29,9 @@ function MemberList({ list, addMember }: MemberListProps) {
         </button>
       </div>
       <div className="member-list__members">
-        {list.map((member, index) => (
-          <div key={index} className="member-list__member">
-            {member}
+        {list.map(({ name, id }, index) => (
+          <div key={index} className="member-list__member" onClick={() => handleDeleteMember(id)}>
+            {name}
           </div>
         ))}
       </div>

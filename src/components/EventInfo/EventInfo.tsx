@@ -17,7 +17,7 @@ function EventInfo({ title, startTime, endTime, description, members }: EventInf
       <div className="event-info__field">
         <div className="event-info__field-name">Members: </div>
         <div className="event-info__field-info">
-          {members.map((member, index) => (index === members.length - 1 ? member : `${member},`))}
+          {members.map(({ name }, index) => (index === members.length - 1 ? name : `${name},`))}
         </div>
       </div>
     </div>

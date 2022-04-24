@@ -31,7 +31,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    max-height: 25px;
+    height: 35px;
     margin: 5px 0;
     box-sizing: border-box;
     overflow: auto;
@@ -40,7 +40,12 @@
   &__member {
     background-color: $calendar-secondary-color;
     color: white;
-    margin: 5px 5px 5px 0;
     padding: 0 5px;
+    margin: 0 5px 5px 0;
+    box-sizing: border-box;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
