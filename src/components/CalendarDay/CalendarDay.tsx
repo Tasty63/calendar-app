@@ -15,15 +15,15 @@ function CalendarDay({ date, isFromCurrentMonth }: CalendarDayProps) {
 
   const dayClassName = isFromCurrentMonth
     ? isToday(date)
-      ? 'calendar__day calendar__day_today'
-      : 'calendar__day'
-    : 'calendar__day calendar__day_other-month';
+      ? 'calendar-day calendar-day_today'
+      : 'calendar-day'
+    : 'calendar-day calendar-day_other-month';
 
   return (
     <>
       <div className={dayClassName} onClick={() => setModalActive(true)}>
-        <div className="calendar__date">{date.getDate()}</div>
-        {dayEvents.length ? <div className="calendar__indicator">{dayEvents.length}</div> : ''}
+        <div className="calendar-day__date">{date.getDate()}</div>
+        {dayEvents.length ? <div className="calendar-day__indicator">{dayEvents.length}</div> : ''}
       </div>
       <Modal isActive={isModalActive} handleClose={() => setModalActive(false)}>
         <EventList date={date} dayEvents={dayEvents} />

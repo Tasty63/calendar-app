@@ -1,6 +1,6 @@
 @import '../../config/variables.scss';
 
-.calendar__day {
+.calendar-day {
   position: relative;
   display: flex;
   justify-content: center;
@@ -21,20 +21,20 @@
   &_today {
     border: 2px solid $calendar-today-color;
   }
-}
 
-.calendar__indicator {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 20px;
-  padding: 5px 10px;
-  box-sizing: border-box;
-  background: $calendar-color;
-  color: white;
-  text-align: center;
-}
+  &__indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    background: $calendar-color;
+    color: white;
+    text-align: center;
+  }
 
-.calendar__date {
-  font-size: 20px;
+  &__date {
+    font-size: 20px;
+  }
 }

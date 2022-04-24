@@ -3,7 +3,7 @@ import TimePicker, { TimePickerValue } from 'react-time-picker';
 import { noTitleText } from '../../config/constants';
 import { useAppDispatch } from '../../redux/hooks';
 import { add, update } from '../../redux/reducers/eventSlice';
-import { EventFormProps, Member } from '../../types/calendar-types';
+import { DayEventParameters, EventFormProps, Member } from '../../types/calendar-types';
 import MemberList from '../MemberList/MemberList';
 import './EventForm.scss';
 
@@ -25,29 +25,18 @@ function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) 
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    mode === 'Update' && parameters
-      ? dispatch(
-          update({
-            id: parameters.id,
-            day: parameters.day,
-            title: titleValue || noTitleText,
-            description: descriptionValue,
-            startTime: startTimeValue,
-            endTime: endTimeValue,
-            members: memberList,
-          })
-        )
-      : dispatch(
-          add({
-            id: new Date().getMilliseconds(),
-            day,
-            title: titleValue || noTitleText,
-            description: descriptionValue,
-            startTime: startTimeValue,
-            endTime: endTimeValue,
-            members: memberList,
-          })
-        );
+    const eventId = mode === 'Update' && parameters ? parameters.id : new Date().getMilliseconds();
+    const eventParameters: DayEventParameters = {
+      id: eventId,
+      day: day,
+      title: titleValue || noTitleText,
+      description: descriptionValue,
+      startTime: startTimeValue,
+      endTime: endTimeValue,
+      members: memberList,
+    };
+
+    mode === 'Update' && parameters ? dispatch(update(eventParameters)) : dispatch(add(eventParameters));
     handleCloseModal();
   };
 
@@ -69,6 +58,7 @@ function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) 
             <TimePicker
               className="event-form__time-input"
               disableClock
+              required
               value={startTimeValue}
               onChange={handleTimeStartChange}
             />
@@ -76,6 +66,7 @@ function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) 
             <TimePicker
               className="event-form__time-input"
               disableClock
+              required
               minTime={startTimeValue}
               value={endTimeValue}
               onChange={setEndTime}
