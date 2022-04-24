@@ -42,11 +42,11 @@ function Calendar() {
   return (
     <div className="calendar">
       <div className="calendar__header">
-        <div className="button-month" onClick={setPrevMonth}>{`<`}</div>
+        <div className="calendar__button-month" onClick={setPrevMonth}>{`<`}</div>
         <div className="calendar__current-month">
           {`${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
         </div>
-        <div className="button-month" onClick={setNextMonth}>{`>`}</div>
+        <div className="calendar__button-month" onClick={setNextMonth}>{`>`}</div>
       </div>
       <div className="calendar__body">
         <div className="calendar__weekdays">

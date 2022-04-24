@@ -6,6 +6,7 @@
 
   &__field {
     display: flex;
+    flex: 1 1 auto;
   }
 
   &__input {
@@ -46,6 +47,17 @@
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  @media (max-width: $first-break-point) {
+    &__input {
+      font-size: 14px;
+      padding: 5px;
+    }
+    &__button-add {
+      font-size: 30px;
+      padding: 0 10px;
     }
   }
 }

@@ -21,13 +21,6 @@ function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) 
     setStartTime(value);
   };
 
-  const handleEndTimeChange = (value: TimePickerValue) => {
-    if (value < startTimeValue) {
-      setStartTime(value);
-    }
-    setEndTime(value);
-  };
-
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.SyntheticEvent) => {
@@ -72,25 +65,29 @@ function EventForm({ day, handleCloseModal, mode, parameters }: EventFormProps) 
         </div>
 
         <div className="event-form__field">
-          <div className="event-form__time time">
+          <div className="event-form__time">
             <TimePicker
-              className="time__input"
-              hourHandWidth={20}
+              className="event-form__time-input"
               disableClock
               value={startTimeValue}
               onChange={handleTimeStartChange}
             />
             <div className="dash">&#8212;</div>
-            <TimePicker className="time__input" disableClock value={endTimeValue} onChange={handleEndTimeChange} />
+            <TimePicker
+              className="event-form__time-input"
+              disableClock
+              minTime={startTimeValue}
+              value={endTimeValue}
+              onChange={setEndTime}
+            />
           </div>
         </div>
 
         <div className="event-form__field">
           <textarea
-            name=""
-            id=""
+            name="description"
             placeholder="Event Description"
-            className="event-form__description"
+            className="event-form__input event-form__input_description"
             value={descriptionValue}
             onChange={(event) => setDescription(event.target.value)}
           ></textarea>

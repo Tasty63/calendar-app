@@ -12,6 +12,13 @@
     font-size: 40px;
   }
 
+  &__button-month {
+    user-select: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__current-month {
     display: flex;
     flex-basis: 300px;
@@ -26,18 +33,18 @@
     display: flex;
     justify-content: center;
     flex: 1 1 calc(100% / 7);
-    padding: 15px 0;
+    padding: 15px;
+    overflow: hidden;
   }
 
   &__days {
     display: flex;
     flex-wrap: wrap;
   }
-}
 
-.button-month {
-  user-select: none;
-  &:hover {
-    cursor: pointer;
+  @media (max-width: $second-break-point) {
+    &__weekday {
+      justify-content: flex-start;
+    }
   }
 }

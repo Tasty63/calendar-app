@@ -1,19 +1,19 @@
 @import '../../config/variables.scss';
 
 .event-list {
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 20px;
   border-radius: 15px;
+  box-sizing: border-box;
 
   &__header {
-    box-sizing: border-box;
-    font-size: 30px;
     padding: 5px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 30px;
+    box-sizing: border-box;
   }
 
   &__day {
@@ -37,6 +37,19 @@
     &:hover {
       transform: scale(1.1);
       cursor: pointer;
+    }
+  }
+
+  @media (max-width: $first-break-point) {
+    &__header {
+      font-size: 25px;
+    }
+
+    &__button-add {
+      font-size: 30px;
+    }
+    &__day {
+      margin-left: 0;
     }
   }
 }
