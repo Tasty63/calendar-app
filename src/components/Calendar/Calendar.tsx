@@ -25,11 +25,14 @@ function Calendar() {
 
     for (let index = 0; index < daysInCalendar; index++) {
       if (index < firstWeekDayNumber) {
-        monthScheme.push(new Date(year, month, 0 - firstWeekDayNumber + index + 1));
+        const dayFromPreviousMonth = new Date(year, month, 0 - firstWeekDayNumber + index + 1);
+        monthScheme.push(dayFromPreviousMonth);
       } else if (index < daysInMonth + firstWeekDayNumber) {
-        monthScheme.push(new Date(year, month, index - firstWeekDayNumber + 1));
+        const dayFromCurrentMonth = new Date(year, month, index - firstWeekDayNumber + 1);
+        monthScheme.push(dayFromCurrentMonth);
       } else if (index < daysInCalendar) {
-        monthScheme.push(new Date(year, month + 1, index - firstWeekDayNumber - daysInMonth + 1));
+        const dayFromNextMonth = new Date(year, month + 1, index - firstWeekDayNumber - daysInMonth + 1);
+        monthScheme.push(dayFromNextMonth);
       }
     }
     return monthScheme;

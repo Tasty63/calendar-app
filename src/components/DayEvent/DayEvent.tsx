@@ -14,7 +14,7 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
   const [isModalActive, setModalActive] = useState(false);
   const [isDayEventEdit, setEdit] = useState(false);
 
-  const disptach = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const handleCloseModal = () => {
     setModalActive(false);
@@ -52,8 +52,8 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
     const dayEventElem = getClosestElement(event.target, '.day-event');
     dayEventElem && dayEventElem.classList.remove('day-event_active');
 
-    disptach(update({ ...draggedDayEvent, startTime: dayParameters.startTime, endTime: dayParameters.endTime }));
-    disptach(update({ ...dayParameters, startTime: draggedDayEvent.startTime, endTime: draggedDayEvent.endTime }));
+    dispatch(update({ ...draggedDayEvent, startTime: dayParameters.startTime, endTime: dayParameters.endTime }));
+    dispatch(update({ ...dayParameters, startTime: draggedDayEvent.startTime, endTime: draggedDayEvent.endTime }));
   };
 
   return (
@@ -71,7 +71,7 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
         <div className="day-event__title">{title}</div>
         <div className="day-event__time">{`${startTime}-${endTime}`}</div>
         <div className="day-event__panel">
-          <button className="day-event__button-delete" onClick={() => disptach(remove(id))}>
+          <button className="day-event__button-delete" onClick={() => dispatch(remove(id))}>
             X
           </button>
           <button className="day-event__button-update" onClick={handleEditEvent}>
@@ -82,7 +82,7 @@ function DayEvent({ draggedDayEvent, setDraggedDayEvent, parameters }: DayEventP
       <Modal isActive={isModalActive} handleClose={handleCloseModal}>
         {isDayEventEdit ? (
           <EventForm
-            mode={'Update'}
+            mode="Update"
             day={day}
             handleCloseModal={handleCloseModal}
             parameters={{ id, title, day, startTime, endTime, description, members }}
